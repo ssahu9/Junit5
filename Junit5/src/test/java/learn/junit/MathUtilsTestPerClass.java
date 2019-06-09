@@ -6,25 +6,25 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-class MathUtilsTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class MathUtilsTestPerClass {
 	
 	/*
-	 * Junit create a new instance for each test case 
-	 * 
+	 * Junit create a new instance for each test case but by using @TestInstance we can change the behavior of class     
+	 * and this time we do not need static method for BeforeAll and AfterAll
 	 */
 	
 	
 	MathUtils mathUtils;
 	@BeforeAll
-	static void beforeAll() {
+	void beforeAll() {
 		System.out.println("this needs to run before all");
 	}
 	@AfterAll
-	static void afterAll() {
+	void afterAll() {
 		System.out.println("This needs to run after all");
 	}
 	
@@ -41,9 +41,7 @@ class MathUtilsTest {
 	}
 
 	@Test
-	// Display name annotation use to give name to method that would get display in Junit runner 
-	@DisplayName("Testing add method")
-	void testAdd() {
+	void test() {
 		// Create the instance of class
 		//Setup inputs 
 		// execute the code you want to test 
@@ -59,14 +57,6 @@ class MathUtilsTest {
 		System.out.println("TEST RUNNER updated");
 		System.out.println("TEST RUNNER updated");
 	}
-	@Test
-	@Disabled
-	@DisplayName("TDD - this method should not run")
-	void testAdd2() {
-		// created this method just to show the use of @Disabled annotation
-		// very use full method while development phase  
-	}
-	
 	
 	@Test
 	void testDivide() {
