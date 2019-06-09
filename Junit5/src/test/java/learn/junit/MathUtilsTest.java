@@ -1,7 +1,7 @@
 package learn.junit;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assumptions.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,6 +9,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
+import org.junit.jupiter.api.condition.EnabledOnJre;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.JRE;
+import org.junit.jupiter.api.condition.OS;
 
 class MathUtilsTest {
 	
@@ -17,11 +24,12 @@ class MathUtilsTest {
 	 * 
 	 */
 	
-	
+	Boolean serverStatus;
 	MathUtils mathUtils;
 	@BeforeAll
 	static void beforeAll() {
 		System.out.println("this needs to run before all");
+		
 	}
 	@AfterAll
 	static void afterAll() {
@@ -31,7 +39,8 @@ class MathUtilsTest {
 	//Initialize before each method
 	@BeforeEach
 	void init() {
-	this.mathUtils = new MathUtils();	
+	this.mathUtils = new MathUtils();
+	serverStatus= false;
 	}
 	
 	// Tear down after each method
@@ -87,7 +96,35 @@ class MathUtilsTest {
 		assertEquals(expected, actual,"This method should return area of circle");
 	}
 	
+	/*
+	 *  Conditional Execution -enable only on satisfying conditionn else disabled 
+	 *	@EnabledIf
+		@EnabledIfEnvironmentVariable
+		@EnabledOnJre(JRE.JAVA_11)
+		@EnabledIfSystemProperty
+		@EnabledOnOs(OS.LINUX)
+  
+	 * 
+	 * 
+	 */
 	
+	@Test
+	@EnabledOnOs(OS.LINUX)
+	@DisplayName("Add test for Linux")
+	void testAddForLinux() {
+		
+	}
+	
+	/*
+	 * Assumption - suppose we want to run test case only on server is 
+	 * up otherwise we just want to ignore it that time we can assume some value
+	 *  
+	 */
+	@Test
+	@DisplayName("Assumptiion test")
+	void testAddWithAssumption() {
+		assumeTrue(serverStatus);
+	}
 	
 
 }
