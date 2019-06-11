@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
@@ -16,7 +17,7 @@ import org.junit.jupiter.api.condition.EnabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.JRE;
 import org.junit.jupiter.api.condition.OS;
-
+@DisplayName(" MATHUTILS TEST CLASS")
 class MathUtilsTest {
 	
 	/*
@@ -143,7 +144,28 @@ class MathUtilsTest {
 	}
 	
 	
-	
+	// Nested class
+	/*
+	 * @nested annotation used to define nested class that would have bunch of test case 
+	 * help to organise the test case
+	 *  FINAL RESULT IS CUMMULATIVE -- PASS IF ALL PASS
+	 */
+	@Nested
+	class AddTest
+	{	
+		@Test
+		@DisplayName("Add test 1")
+		void testAdd1() {
+			assertEquals(2, mathUtils.add(1, 1));
+		}
+		
+		@Test
+		@DisplayName("Add test 2")
+		void testAdd2() {
+			assertEquals(-120, mathUtils.add(-5, -5));
+		}
+		
+	}
 	
 	
 	
