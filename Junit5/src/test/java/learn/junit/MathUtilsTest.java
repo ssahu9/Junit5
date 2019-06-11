@@ -115,7 +115,7 @@ class MathUtilsTest {
 		
 	}
 	
-	/*
+	/*	
 	 * Assumption - suppose we want to run test case only on server is 
 	 * up otherwise we just want to ignore it that time we can assume some value
 	 *  
@@ -126,5 +126,58 @@ class MathUtilsTest {
 		assumeTrue(serverStatus);
 	}
 	
-
+//	 Assert All
+	/*
+	 * Assert all takes bunch of lamdas and each each lamda is the assert statement
+	 */
+	@Test
+	@DisplayName("Multiply Test ")
+	void testMultiply() {
+		
+		assertAll(
+				()->{ assertEquals(4, mathUtils.multiply(2, 2),"Multiply test 11");},
+				()->{ assertEquals(4, mathUtils.multiply(2, 2),"Multiply test 1");}
+				
+				
+				);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
